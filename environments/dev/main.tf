@@ -20,6 +20,6 @@ module "eks" {
   cluster_name   = "dev-eks"
   private_subnets = module.vpc.private_subnets
 
-  cluster_role = "arn:aws:iam::123456:role/EKSClusterRole"
+  cluster_role = "arn:aws:iam::870923192415:role/eks-cluster-role"
   node_role    = "arn:aws:iam::870923192415:role/eks-node-policy"
 }

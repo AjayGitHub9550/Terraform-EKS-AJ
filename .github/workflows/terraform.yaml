@@ -30,5 +30,11 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
+      - name: Manual Approval
+        uses: hmarr/auto-approve-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        if: always()
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
