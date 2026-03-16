@@ -2,10 +2,10 @@ terraform {
 
  backend "s3" {
 
-   bucket = "terraform-eks-state"
+   bucket = "terraform-eks-state-yerukula"
    key    = "dev/terraform.tfstate"
-   region = "us-east-1"
+   region = "eu-north-1"
 
-   dynamodb_table = "terraform-lock"
+   use_lockfile = true
  }
 }
