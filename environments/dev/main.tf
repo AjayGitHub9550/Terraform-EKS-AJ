@@ -27,7 +27,7 @@ module "eks" {
 module "nat" {
   source = "../../modules/nat"
 
-  vpc_id             = aws_vpc.main.id
+  vpc_id             = module.vpc.vpc_id  # Use the vpc module's output
   public_subnet_id   = var.public_subnets   # NAT in public subnet
   private_subnet_ids = var.private_subnets
 }
