@@ -28,7 +28,13 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var-file="dev-terraform.tfvars" -out=tfplan
+      
+      - name: Upload Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: environments/dev/tfplan
 
   terraform-apply:
 
@@ -48,6 +54,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-
+      
+      - name: Download Plan
+        uses: actions/download-artifact@v4
+        with:
+          name: tfplan
+          path: environments/dev
+      
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply tfplan -auto-approve
