@@ -12,7 +12,7 @@ resource "aws_nat_gateway" "nat" {
 }
 
 resource "aws_route_table" "private" {
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 }
 
 resource "aws_route" "private_nat" {
