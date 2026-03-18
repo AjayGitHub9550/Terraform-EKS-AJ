@@ -1,25 +1,25 @@
 provider "aws" {
-  region = "eu-north-1"
+  region = var.region
 }
 
 module "vpc" {
   source = "../../modules/vpc"
 
-  vpc_name = "eks-vpc"
-  vpc_cidr = "10.0.0.0/16"
+  vpc_name = var.vpc_name
+  vpc_cidr = var.vpc_cidr
 
-  public_subnets  = ["10.0.1.0/24","10.0.2.0/24"]
-  private_subnets = ["10.0.3.0/24","10.0.4.0/24"]
+  public_subnets  = var.public_subnets
+  private_subnets = var.private_subnets
 
-  azs = ["eu-north-1a","eu-north-1b"]
+  azs = var.azs
 }
 
 module "eks" {
   source = "../../modules/eks"
 
-  cluster_name   = "dev-eks"
+  cluster_name   = var.cluster_name
   private_subnets = module.vpc.private_subnets
 
-  cluster_role = "arn:aws:iam::870923192415:role/eks-cluster-role"
-  node_role    = "arn:aws:iam::870923192415:role/eks-node-policy"
+  cluster_role = var.cluster_role
+  node_role    = var.node_role
 }
