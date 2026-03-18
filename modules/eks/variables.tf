@@ -4,6 +4,6 @@ variable "cluster_role" {}
 
 variable "node_role" {}
 
-variable "private_subnets" {
+variable "public_subnets" {
   type = list(string)
 }
