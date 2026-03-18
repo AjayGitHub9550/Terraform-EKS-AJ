@@ -18,7 +18,7 @@ module "eks" {
   source = "../../modules/eks"
 
   cluster_name   = var.cluster_name
-  private_subnets = module.vpc.private_subnets
+  public_subnets = module.vpc.public_subnets
 
   cluster_role = var.cluster_role
   node_role    = var.node_role
