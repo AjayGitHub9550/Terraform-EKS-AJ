@@ -29,5 +29,6 @@ module "nat" {
 
   vpc_id             = module.vpc.vpc_id  # Use the vpc module's output
   public_subnet_id   = module.vpc.public_subnets[0]   # NAT in public subnet
-  private_subnet_ids = module.vpc.private_subnets
+  private_route_table_id  = module.vpc.private_route_table_id
+  igw_id             = module.vpc.igw_id
 }
